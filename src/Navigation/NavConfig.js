@@ -1,10 +1,17 @@
+import HomeIcon from "@material-ui/icons/Home";
+import IsoIcon from "@material-ui/icons/Iso";
 import { Header } from "../Components/Header";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
+import { ExampleFeature } from "../Components/example-feature/Feature";
 
 export const NavItems = [
   {
-    title: "Header",
+    title: "No sub features",
     component: Header,
-    icon: InboxIcon,
+    icon: HomeIcon,
+  },
+  {
+    title: "Sub features",
+    component: ExampleFeature,
+    icon: IsoIcon,
   },
 ];

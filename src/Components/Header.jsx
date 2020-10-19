@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "@material-ui/core/Container";
-export const Header = () => {
+import { PhotoContext } from "../PhotoProvider";
+
+export const Header = (props) => {
+  const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
+
+  if (mainPhoto) {
+    console.log("Main photo:::", mainPhoto.name);
+  } else {
+    console.log("No photo");
+  }
+
   return (
     <>
       <Container>
-        <h1>HI :)</h1>
+        <h1>HI :) </h1>
       </Container>
     </>
   );
