@@ -6,7 +6,7 @@ export const Header = (props) => {
   const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
 
   if (mainPhoto) {
-    console.log("Main photo:::", mainPhoto.name);
+    console.log("Main photo:::", mainPhoto);
   } else {
     console.log("No photo");
   }
