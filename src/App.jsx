@@ -8,11 +8,12 @@ import IconButton from "@material-ui/core/IconButton";
 import PublishIcon from "@material-ui/icons/Publish";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { PhotoContext } from "./PhotoProvider";
-import Brightness from './Components/brightness/Brightness.component'; 
+import Brightness from './Components/brightness/Brightness.component';
+import SobelFeature from './Components/sobel-feature/SobelFeature.component';
 
 function App() {
   const styles = useStyles();
-  //Setting up references to DOM elements 
+  //Setting up references to DOM elements
   const imageRef = useRef()
   const canvasRef = useRef()
   const [component, setComponent] = useState(React.FC);
@@ -78,13 +79,14 @@ function App() {
               height="auto"
               src={mainPhoto}
             />
-      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg}></canvas> 
+      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg}></canvas>
              </div>
           </CardMedia>
         </Card>
       </Container>
      { /* {component} */ }
    { mainPhoto ? <Brightness image={imageRef} canvas={canvasRef}></Brightness> : null }
+   { mainPhoto ? <SobelFeature image={imageRef} canvas={canvasRef}></SobelFeature> : null }
     </>
   );
 }
