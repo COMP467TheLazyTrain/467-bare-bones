@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { HeaderAndNav } from "./Navigation/Main";
 import Container from "@material-ui/core/Container";
@@ -8,9 +8,13 @@ import IconButton from "@material-ui/core/IconButton";
 import PublishIcon from "@material-ui/icons/Publish";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { PhotoContext } from "./PhotoProvider";
+import Brightness from './Components/brightness/Brightness.component'; 
 
 function App() {
   const styles = useStyles();
+  //Setting up references to DOM elements 
+  const imageRef = useRef()
+  const canvasRef = useRef()
   const [component, setComponent] = useState(React.FC);
   const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
 
@@ -24,6 +28,14 @@ function App() {
       if (event.target.files[0]) {
         const photo = URL.createObjectURL(event.target.files[0]);
         setMainPhoto(photo);
+        imageRef.current.onload = () => {
+          // Initialize matrix
+          let mat = window.cv.imread(imageRef.current);
+          // Display on canvas
+          window.cv.imshow(canvasRef.current, mat);
+          //Delete original matrix
+          mat.delete();
+          }
       }
     } catch {
       console.log("Error");
@@ -33,7 +45,7 @@ function App() {
   return (
     <>
       <HeaderAndNav func={handleNavItemClick} />
-      <Container style={{ marginLeft: "15%" }}>
+      <Container>
         <Card>
           <div>
             <label>
@@ -57,18 +69,22 @@ function App() {
             </IconButton>
           </div>
           <CardMedia>
+          <div style={{display:"flex"}}>
             <img
+              ref={imageRef}
               className={styles.mainImg}
               alt=""
               onLoad={() => console.log("Uploaded")}
-              width="400"
               height="auto"
               src={mainPhoto}
             />
+      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg}></canvas> 
+             </div>
           </CardMedia>
         </Card>
       </Container>
-      {component}
+     { /* {component} */ }
+   { mainPhoto ? <Brightness image={imageRef} canvas={canvasRef}></Brightness> : null }
     </>
   );
 }
@@ -77,7 +93,8 @@ const useStyles = makeStyles(() => ({
     display: "block",
     marginLeft: "auto",
     marginRight: "auto",
-    paddingBottom: "5px",
+    paddingBottom: "15px",
+    maxWidth:"400px",
   },
 }));
 
