@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef} from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { HeaderAndNav } from "./Navigation/Main";
 import Container from "@material-ui/core/Container";
@@ -9,6 +9,7 @@ import PublishIcon from "@material-ui/icons/Publish";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { PhotoContext } from "./PhotoProvider";
 import Brightness from './Components/brightness/Brightness.component'; 
+import './App.css'
 
 function App() {
   const styles = useStyles();
@@ -17,7 +18,9 @@ function App() {
   const canvasRef = useRef()
   const [component, setComponent] = useState(React.FC);
   const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
-
+  
+  const [imgData,setImgData] = useState(null)
+ 
   const handleNavItemClick = (Component) => {
     setComponent(<Component />);
   };
@@ -78,13 +81,13 @@ function App() {
               height="auto"
               src={mainPhoto}
             />
-      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg}></canvas> 
+      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg} style={imgData}></canvas> 
              </div>
           </CardMedia>
         </Card>
       </Container>
      { /* {component} */ }
-   { mainPhoto ? <Brightness image={imageRef} canvas={canvasRef}></Brightness> : null }
+   { mainPhoto ? <Brightness image={imageRef} canvas={canvasRef} setImgData={setImgData}></Brightness> : null }
     </>
   );
 }
