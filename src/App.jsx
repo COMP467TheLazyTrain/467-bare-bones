@@ -11,6 +11,7 @@ import { PhotoContext } from "./PhotoProvider";
 import Brightness from './Components/brightness/Brightness.component';
 import './App.css'
 import SobelFeature from './Components/sobel-feature/SobelFeature.component';
+import AppStreamCam from './Components/videocam/AppStreamCam.component';
 
 function App() {
   const styles = useStyles();
@@ -21,6 +22,7 @@ function App() {
   const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
 
   const [imgData,setImgData] = useState(null)
+
 
   const handleNavItemClick = (Component) => {
     setComponent(<Component />);
@@ -90,6 +92,7 @@ function App() {
      { /* {component} */ }
    { mainPhoto ? <Brightness image={imageRef} canvas={canvasRef} setImgData={setImgData}></Brightness> : null }
    { mainPhoto ? <SobelFeature image={imageRef} canvas={canvasRef}></SobelFeature> : null }
+   <AppStreamCam></AppStreamCam>
     </>
   );
 }
