@@ -8,7 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import PublishIcon from "@material-ui/icons/Publish";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { PhotoContext } from "./PhotoProvider";
-import Brightness from './Components/brightness/Brightness.component'; 
+import Brightness from './Components/brightness/Brightness.component';
 import './App.css'
 import SobelFeature from './Components/sobel-feature/SobelFeature.component';
 
@@ -21,7 +21,7 @@ function App() {
   const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
 
   const [imgData,setImgData] = useState(null)
- 
+
   const handleNavItemClick = (Component) => {
     setComponent(<Component />);
   };
@@ -82,8 +82,7 @@ function App() {
               height="auto"
               src={mainPhoto}
             />
-      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg} style={imgData}></canvas> 
-      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg}></canvas>
+      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg} style={imgData}></canvas>
              </div>
           </CardMedia>
         </Card>

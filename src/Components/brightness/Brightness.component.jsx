@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import BrightnessMediumIcon from "@material-ui/icons/BrightnessMedium";
 import Slider from '@material-ui/core/Slider';
 import Slider2 from '../slider2/Slider2'
-import './Brightness.styles.css'; 
+import './Brightness.styles.css';
 import SidebarItem from '../sidebar/SideBarItem'
 
 
@@ -19,7 +19,6 @@ const DEFAULT_OPTIONS = [
     },
     unit: '%'
   },
- 
   {
     name: 'Saturation',
     property: 'saturate',
@@ -69,25 +68,25 @@ const Brightness = (props) => {
   const selectedOption = options[selectedOptionIndex]
   // end
 
-  //Destructuring imageRef and canvasRef from props 
-  const {image, canvas} = props; 
+  //Destructuring imageRef and canvasRef from props
+  const {image, canvas} = props;
   const [value, setValue] = useState(0);
- 
+
   const handleChange = (event, newValue) => {
        setValue(newValue);
-       //Initializing input matrix and output matrix  
+       //Initializing input matrix and output matrix
        let mat = window.cv.imread(image.current);
        let mat2 = new window.cv.Mat();
        // Applying openCV method to input matrix
        window.cv.convertScaleAbs(mat, mat2, 1, newValue);
-       // Displaying output matrix on canvas 
-       window.cv.imshow(canvas.current, mat2);
+       // Displaying output matrix on canvas
+       window.cv.imshow("canvasOutput", mat2);
   };
 
   useEffect(() => {
     getImageStyle()
   }, [options])
-  
+
   function handleSliderChange({ target }) {
     console.log('>>', target)
     setOptions(prevOptions => {
@@ -106,7 +105,7 @@ const Brightness = (props) => {
      const temp = { filter: filters.join('') }
      console.log(temp)
     return props.setImgData(temp)
-    
+
   }
 
   // end
@@ -129,7 +128,7 @@ const Brightness = (props) => {
           marks
           min={0}
           max={255}
-        /> :   <Slider2 
+        /> :   <Slider2
           min={selectedOption.range.min}
           max={selectedOption.range.max}
           value={selectedOption.value}

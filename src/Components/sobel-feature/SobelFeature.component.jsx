@@ -1,7 +1,5 @@
 import React, {useState,useContext} from "react";
 import Container from "@material-ui/core/Container";
-import IconButton from "@material-ui/core/IconButton";
-import BrightnessMediumIcon from "@material-ui/icons/BrightnessMedium";
 
 const SobelFeature = (props) => {
  //Destructuring imageRef and canvasRef from props
@@ -30,12 +28,9 @@ const SobelFeature = (props) => {
 
   return (
     <>
-      <Container style={{ display: "flex" }}>
-        <p>Run Sobel:</p>
-        <div>
-          <IconButton onClick={handleClick}>
-            <BrightnessMediumIcon />
-          </IconButton>
+      <Container style={{ display: "flex", justifyContent:"center",alignItems:"center", margin:"2rem auto"}}>
+        <div className="slider-container" style={{display: "flex", justifyContent: "center", margin: '3rem'}}>
+          <button className={`sidebar-item active'`} onClick={handleClick}>Sobel</button>
         </div>
       </Container>
     </>
