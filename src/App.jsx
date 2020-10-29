@@ -10,15 +10,16 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import { PhotoContext } from "./PhotoProvider";
 import Brightness from './Components/brightness/Brightness.component'; 
 import './App.css'
+import SobelFeature from './Components/sobel-feature/SobelFeature.component';
 
 function App() {
   const styles = useStyles();
-  //Setting up references to DOM elements 
+  //Setting up references to DOM elements
   const imageRef = useRef()
   const canvasRef = useRef()
   const [component, setComponent] = useState(React.FC);
   const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
-  
+
   const [imgData,setImgData] = useState(null)
  
   const handleNavItemClick = (Component) => {
@@ -82,12 +83,14 @@ function App() {
               src={mainPhoto}
             />
       <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg} style={imgData}></canvas> 
+      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg}></canvas>
              </div>
           </CardMedia>
         </Card>
       </Container>
      { /* {component} */ }
    { mainPhoto ? <Brightness image={imageRef} canvas={canvasRef} setImgData={setImgData}></Brightness> : null }
+   { mainPhoto ? <SobelFeature image={imageRef} canvas={canvasRef}></SobelFeature> : null }
     </>
   );
 }

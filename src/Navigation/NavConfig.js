@@ -2,6 +2,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import IsoIcon from "@material-ui/icons/Iso";
 import { Header } from "../Components/Header";
 import { ExampleFeature } from "../Components/example-feature/Feature";
+import { SobelFeature } from "../Components/sobel-feature/Feature";
 
 export const NavItems = [
   {
@@ -14,4 +15,9 @@ export const NavItems = [
     component: ExampleFeature,
     icon: IsoIcon,
   },
+  //{
+  //  title: "Sobel",
+  //  component: SobelFeature,
+  //  icon: IsoIcon,
+  //},
 ];
