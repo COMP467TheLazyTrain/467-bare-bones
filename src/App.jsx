@@ -11,12 +11,13 @@ import { PhotoContext } from "./PhotoProvider";
 import Brightness from './Components/brightness/Brightness.component';
 import './App.css'
 import SobelFeature from './Components/sobel-feature/SobelFeature.component';
+import FaceDetection from "./Components/faceDetection/FaceDetection.component";
 
 function App() {
   const styles = useStyles();
   //Setting up references to DOM elements
-  const imageRef = useRef()
-  const canvasRef = useRef()
+  const imageRef = useRef();
+  const canvasRef = useRef();
   const [component, setComponent] = useState(React.FC);
   const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
 
@@ -39,7 +40,7 @@ function App() {
           window.cv.imshow(canvasRef.current, mat);
           //Delete original matrix
           mat.delete();
-          }
+        };
       }
     } catch {
       console.log("Error");
@@ -87,9 +88,10 @@ function App() {
           </CardMedia>
         </Card>
       </Container>
-     { /* {component} */ }
-   { mainPhoto ? <Brightness image={imageRef} canvas={canvasRef} setImgData={setImgData}></Brightness> : null }
-   { mainPhoto ? <SobelFeature image={imageRef} canvas={canvasRef}></SobelFeature> : null }
+      { /* {component} */ }
+      { mainPhoto ? <Brightness image={imageRef} canvas={canvasRef} setImgData={setImgData}></Brightness> : null }
+      { mainPhoto ? <SobelFeature image={imageRef} canvas={canvasRef}></SobelFeature> : null }
+      <FaceDetection image={imageRef} canvas={canvasRef}></FaceDetection>
     </>
   );
 }
@@ -99,7 +101,7 @@ const useStyles = makeStyles(() => ({
     marginLeft: "auto",
     marginRight: "auto",
     paddingBottom: "15px",
-    maxWidth:"400px",
+    maxWidth: "400px",
   },
 }));
 
