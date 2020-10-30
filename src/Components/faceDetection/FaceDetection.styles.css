@@ -1,0 +1,9 @@
+#overlay {
+  position: absolute;
+  top: 350px;
+  z-index: 2147483647;
+}
+
+#video {
+  z-index: 1;
+}

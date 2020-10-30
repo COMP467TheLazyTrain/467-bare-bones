@@ -28,9 +28,16 @@
       function onOpenCvReady() {
         console.log( 'OpenCV Ready', cv);
       }
+      function trackingReady() {
+        console.log("tracking Ready");
+      }
+      function faceReady() {
+        console.log("face Ready");
+      }
     </script>
-    <script async src="opencv.js" onload="onOpenCvReady();" type="text/javascript">    
-    </script>
+    <script async src="opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+    <script async src="tracking-min.js" onload="trackingReady();" type="text/javascript"></script>
+    <script async src="face-min.js" onload="faceReady();" type="text/javascript"></script>
     <title>React App</title>
   </head>
   <body>
