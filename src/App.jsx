@@ -8,11 +8,12 @@ import IconButton from "@material-ui/core/IconButton";
 import PublishIcon from "@material-ui/icons/Publish";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { PhotoContext } from "./PhotoProvider";
-import Brightness from './Components/brightness/Brightness.component';
-import './App.css'
-import SobelFeature from './Components/sobel-feature/SobelFeature.component';
+import Brightness from "./Components/brightness/Brightness.component";
+import "./App.css";
+import SobelFeature from "./Components/sobel-feature/SobelFeature.component";
 import FaceDetection from "./Components/faceDetection/FaceDetection.component";
-
+import { Header } from "./Components/Header";
+import { Threshold } from "./Components/Threshold";
 function App() {
   const styles = useStyles();
   //Setting up references to DOM elements
@@ -21,32 +22,39 @@ function App() {
   const [component, setComponent] = useState(React.FC);
   const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
 
-  const [imgData,setImgData] = useState(null)
+  const [imgData, setImgData] = useState(null);
 
   const handleNavItemClick = (Component) => {
     setComponent(<Component />);
   };
 
-  const handlePhotoChange = async (event) => {
+  const handlePhotoChange = (event) => {
     event.preventDefault();
+    console.log("handleCHangePhoto:::");
     try {
       if (event.target.files[0]) {
         const photo = URL.createObjectURL(event.target.files[0]);
+        console.log("THE PHOTO:::", photo);
         setMainPhoto(photo);
+        console.log("Entering onload:::");
         imageRef.current.onload = () => {
           // Initialize matrix
           let mat = window.cv.imread(imageRef.current);
           // Display on canvas
           window.cv.imshow(canvasRef.current, mat);
           //Delete original matrix
+          console.log("Deleting OG mat:::", mat.type());
           mat.delete();
         };
       }
     } catch {
-      console.log("Error");
+      console.log("Error, Not");
     }
   };
 
+  useEffect(() => {
+    console.log("The main PHOTO::::", mainPhoto);
+  }, [mainPhoto]);
   return (
     <>
       <HeaderAndNav func={handleNavItemClick} />
@@ -74,24 +82,39 @@ function App() {
             </IconButton>
           </div>
           <CardMedia>
-          <div style={{display:"flex"}}>
-            <img
-              ref={imageRef}
-              className={styles.mainImg}
-              alt=""
-              onLoad={() => console.log("Uploaded")}
-              height="auto"
-              src={mainPhoto}
-            />
-      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg} style={imgData}></canvas>
-             </div>
+            <div style={{ display: "flex" }}>
+              <img
+                ref={imageRef}
+                className={styles.mainImg}
+                alt=""
+                onLoad={() => console.log("Uploaded")}
+                height="auto"
+                src={mainPhoto}
+              />
+
+              <canvas
+                ref={canvasRef}
+                id="canvasOutput"
+                className={styles.mainImg}
+                style={imgData}
+              ></canvas>
+            </div>
           </CardMedia>
         </Card>
       </Container>
-      { /* {component} */ }
-      { mainPhoto ? <Brightness image={imageRef} canvas={canvasRef} setImgData={setImgData}></Brightness> : null }
-      { mainPhoto ? <SobelFeature image={imageRef} canvas={canvasRef}></SobelFeature> : null }
+      {/* {component} */}
+      {mainPhoto ? (
+        <Brightness
+          image={imageRef}
+          canvas={canvasRef}
+          setImgData={setImgData}
+        ></Brightness>
+      ) : null}
+      {mainPhoto ? (
+        <SobelFeature image={imageRef} canvas={canvasRef}></SobelFeature>
+      ) : null}
       <FaceDetection image={imageRef} canvas={canvasRef}></FaceDetection>
+      {mainPhoto && <Threshold img={imageRef} canvas={canvasRef} />}
     </>
   );
 }
