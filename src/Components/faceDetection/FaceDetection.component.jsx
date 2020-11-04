@@ -13,7 +13,7 @@ const FaceDetection = (props) => {
     var context = canvas.getContext("2d");
     var myButton = document.getElementById("videoButton");
 
-    if (myButton.innerHTML == "Detect Face") {
+    if (myButton.innerHTML == "Track Face") {
       video.play();
       myButton.innerHTML = "Stop";
 
@@ -55,22 +55,26 @@ const FaceDetection = (props) => {
       }
 
       video.srcObject = null;
-      myButton.innerHTML = "Detect Face";
+      myButton.innerHTML = "Track Face";
     }
   }
 
   return (
     <>
       <Container>
-        <video id="video" width="320" height="240"></video>
-        <div id="overlay">
-          {" "}
-          <canvas id="canvas" width="320" height="237"></canvas>{" "}
+        <div id="trackerContainer">
+          <hr />
+          <h1>Webcam Face Tracking</h1>
+          <video id="video" width="320" height="240"></video>
+          <div id="overlay">
+            {" "}
+            <canvas id="canvas" width="320" height="237"></canvas>{" "}
+          </div>
+          <br></br>
+          <button id="videoButton" onClick={videoClick}>
+            Track Face
+          </button>
         </div>
-        <br></br>
-        <button id="videoButton" onClick={videoClick}>
-          Detect Face
-        </button>
       </Container>
     </>
   );

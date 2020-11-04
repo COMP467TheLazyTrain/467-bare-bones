@@ -1,9 +1,23 @@
+#trackerContainer {
+  position: relative;
+  margin-top: 200px;
+  height: 400px;
+}
+
 #overlay {
   position: absolute;
-  top: 350px;
+  top: 200;
   z-index: 2147483647;
 }
 
 #video {
+  position: absolute;
+  top: 200;
   z-index: 1;
+  border: 3px solid #ececec;
+}
+
+#videoButton {
+  position: absolute;
+  margin-top: 230px;
 }
