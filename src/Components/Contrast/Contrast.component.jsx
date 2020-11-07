@@ -5,7 +5,7 @@ const Contrast = props => {
   const { image, canvas } = props;
   const [value, setValue] = useState(0);
 
-  // Apply Contrast
+  // Apply Inversion: Threshold 70 -> 255
   const invertClick = () => {
     let matrix1 = window.cv.imread(image.current);
     let matrix2 = new window.cv.Mat();

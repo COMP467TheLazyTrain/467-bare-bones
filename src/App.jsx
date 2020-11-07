@@ -8,9 +8,10 @@ import IconButton from "@material-ui/core/IconButton";
 import PublishIcon from "@material-ui/icons/Publish";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { PhotoContext } from "./PhotoProvider";
-import Brightness from './Components/brightness/Brightness.component';
-import './App.css'
-import SobelFeature from './Components/sobel-feature/SobelFeature.component';
+import Brightness from "./Components/brightness/Brightness.component";
+import "./App.css";
+import SobelFeature from "./Components/sobel-feature/SobelFeature.component";
+import Contrast from "./Components/Contrast/Contrast.component";
 import FaceDetection from "./Components/faceDetection/FaceDetection.component";
 
 function App() {
@@ -21,13 +22,13 @@ function App() {
   const [component, setComponent] = useState(React.FC);
   const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
 
-  const [imgData,setImgData] = useState(null)
+  const [imgData, setImgData] = useState(null);
 
-  const handleNavItemClick = (Component) => {
+  const handleNavItemClick = Component => {
     setComponent(<Component />);
   };
 
-  const handlePhotoChange = async (event) => {
+  const handlePhotoChange = async event => {
     event.preventDefault();
     try {
       if (event.target.files[0]) {
@@ -74,23 +75,42 @@ function App() {
             </IconButton>
           </div>
           <CardMedia>
-          <div style={{display:"flex"}}>
-            <img
-              ref={imageRef}
-              className={styles.mainImg}
-              alt=""
-              onLoad={() => console.log("Uploaded")}
-              height="auto"
-              src={mainPhoto}
-            />
-      <canvas ref={canvasRef} id="canvasOutput" className={styles.mainImg} style={imgData}></canvas>
-             </div>
+            <div style={{ display: "flex" }}>
+              <img
+                ref={imageRef}
+                className={styles.mainImg}
+                alt=""
+                onLoad={() => console.log("Uploaded")}
+                height="auto"
+                src={mainPhoto}
+              />
+              <canvas
+                ref={canvasRef}
+                id="canvasOutput"
+                className={styles.mainImg}
+                style={imgData}
+              ></canvas>
+            </div>
           </CardMedia>
         </Card>
       </Container>
-      { /* {component} */ }
-      { mainPhoto ? <Brightness image={imageRef} canvas={canvasRef} setImgData={setImgData}></Brightness> : null }
-      { mainPhoto ? <SobelFeature image={imageRef} canvas={canvasRef}></SobelFeature> : null }
+      {/* {component} */}
+      {mainPhoto ? (
+        <Brightness
+          image={imageRef}
+          canvas={canvasRef}
+          setImgData={setImgData}
+        ></Brightness>
+      ) : null}
+      {mainPhoto ? (
+        <div
+          className="sidebar"
+          style={{ display: "flex", justifyContent: "center", margin: "3rem" }}
+        >
+          <SobelFeature image={imageRef} canvas={canvasRef}></SobelFeature>
+          <Contrast image={imageRef} canvas={canvasRef}></Contrast>
+        </div>
+      ) : null}
       <FaceDetection image={imageRef} canvas={canvasRef}></FaceDetection>
     </>
   );
@@ -101,8 +121,8 @@ const useStyles = makeStyles(() => ({
     marginLeft: "auto",
     marginRight: "auto",
     paddingBottom: "15px",
-    maxWidth: "400px",
-  },
+    maxWidth: "400px"
+  }
 }));
 
 export default App;
