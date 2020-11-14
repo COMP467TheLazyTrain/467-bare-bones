@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { HeaderAndNav } from "./Navigation/Header";
 import Container from "@material-ui/core/Container";
@@ -12,6 +12,7 @@ import "./App.css";
 import SobelFeature from "./Components/sobel-feature/SobelFeature.component";
 import Contrast from "./Components/Contrast/Contrast.component";
 import FaceDetection from "./Components/faceDetection/FaceDetection.component";
+import { Threshold } from "./Components/Threshold";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -20,14 +21,15 @@ function App() {
   const imageRef = useRef();
   const canvasRef = useRef();
   const [mainPhoto, setMainPhoto] = useState(null);
-
   const [imgData, setImgData] = useState(null);
 
-  const handlePhotoChange = async (event) => {
+  const handlePhotoChange = (event) => {
     event.preventDefault();
+    console.log("handleCHangePhoto:::");
     try {
       if (event.target.files[0]) {
         const photo = URL.createObjectURL(event.target.files[0]);
+        console.log("THE PHOTO:::", photo);
         setMainPhoto(photo);
         // setImgData(photo);
         imageRef.current.onload = () => {
@@ -36,11 +38,12 @@ function App() {
           // Display on canvas
           window.cv.imshow(canvasRef.current, mat);
           //Delete original matrix
+          console.log("Deleting OG mat:::", mat.type());
           mat.delete();
         };
       }
     } catch {
-      console.log("Error");
+      console.log("Error, Not");
     }
   };
 
@@ -120,6 +123,13 @@ function App() {
             exact
             path="/FaceDetection"
             render={() => <FaceDetection image={imageRef} canvas={canvasRef} />}
+          />
+          <Route
+            exact
+            path="/ImageTrace"
+            render={() => (
+              <Threshold image={imageRef} setImgData={setImgData} />
+            )}
           />
         </Switch>
       </Router>

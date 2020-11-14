@@ -14,9 +14,9 @@ const DEFAULT_OPTIONS = [
     value: 100,
     range: {
       min: 0,
-      max: 200
+      max: 200,
     },
-    unit: "%"
+    unit: "%",
   },
   {
     name: "Saturation",
@@ -24,9 +24,9 @@ const DEFAULT_OPTIONS = [
     value: 100,
     range: {
       min: 0,
-      max: 200
+      max: 200,
     },
-    unit: "%"
+    unit: "%",
   },
   {
     name: "Grayscale",
@@ -34,9 +34,9 @@ const DEFAULT_OPTIONS = [
     value: 0,
     range: {
       min: 0,
-      max: 100
+      max: 100,
     },
-    unit: "%"
+    unit: "%",
   },
   {
     name: "Sepia",
@@ -44,9 +44,9 @@ const DEFAULT_OPTIONS = [
     value: 0,
     range: {
       min: 0,
-      max: 100
+      max: 100,
     },
-    unit: "%"
+    unit: "%",
   },
   {
     name: "Hue Rotate",
@@ -54,13 +54,13 @@ const DEFAULT_OPTIONS = [
     value: 0,
     range: {
       min: 0,
-      max: 360
+      max: 360,
     },
-    unit: "deg"
-  }
+    unit: "deg",
+  },
 ];
 
-const Brightness = props => {
+const Brightness = (props) => {
   // start
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
@@ -88,7 +88,7 @@ const Brightness = props => {
 
   function handleSliderChange({ target }) {
     console.log(">>", target);
-    setOptions(prevOptions => {
+    setOptions((prevOptions) => {
       return prevOptions.map((option, index) => {
         if (index !== selectedOptionIndex) return option;
         return { ...option, value: target.value };
@@ -97,7 +97,7 @@ const Brightness = props => {
   }
 
   function getImageStyle() {
-    const filters = options.map(option => {
+    const filters = options.map((option) => {
       return `${option.property}(${option.value}${option.unit})`;
     });
 
@@ -115,7 +115,7 @@ const Brightness = props => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          margin: "2rem auto"
+          margin: "2rem auto",
         }}
       >
         <div>
