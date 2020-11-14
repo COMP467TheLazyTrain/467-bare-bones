@@ -7,7 +7,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import PublishIcon from "@material-ui/icons/Publish";
 import CancelIcon from "@material-ui/icons/Cancel";
-import { PhotoContext } from "./PhotoProvider";
 import Brightness from "./Components/brightness/Brightness.component";
 import "./App.css";
 import SobelFeature from "./Components/sobel-feature/SobelFeature.component";
@@ -20,7 +19,7 @@ function App() {
   //Setting up references to DOM elements
   const imageRef = useRef();
   const canvasRef = useRef();
-  const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
+  const [mainPhoto, setMainPhoto] = useState(null);
 
   const [imgData, setImgData] = useState(null);
 
@@ -30,6 +29,7 @@ function App() {
       if (event.target.files[0]) {
         const photo = URL.createObjectURL(event.target.files[0]);
         setMainPhoto(photo);
+        // setImgData(photo);
         imageRef.current.onload = () => {
           // Initialize matrix
           const mat = window.cv.imread(imageRef.current);
@@ -64,7 +64,9 @@ function App() {
               </label>
               <IconButton
                 style={{ float: "right" }}
-                onClick={() => setMainPhoto("")}
+                onClick={() => {
+                  setMainPhoto(null);
+                }}
                 aria-label="upload picture"
                 component="span"
               >
@@ -86,7 +88,7 @@ function App() {
                   id="canvasOutput"
                   className={styles.mainImg}
                   style={imgData}
-                ></canvas>
+                />
               </div>
             </CardMedia>
           </Card>
