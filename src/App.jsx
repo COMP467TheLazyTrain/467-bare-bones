@@ -1,6 +1,6 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { HeaderAndNav } from "./Navigation/Main";
+import { HeaderAndNav } from "./Navigation/Header";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -13,22 +13,18 @@ import "./App.css";
 import SobelFeature from "./Components/sobel-feature/SobelFeature.component";
 import Contrast from "./Components/Contrast/Contrast.component";
 import FaceDetection from "./Components/faceDetection/FaceDetection.component";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const styles = useStyles();
   //Setting up references to DOM elements
   const imageRef = useRef();
   const canvasRef = useRef();
-  const [component, setComponent] = useState(React.FC);
   const [mainPhoto, setMainPhoto] = useContext(PhotoContext);
 
   const [imgData, setImgData] = useState(null);
 
-  const handleNavItemClick = Component => {
-    setComponent(<Component />);
-  };
-
-  const handlePhotoChange = async event => {
+  const handlePhotoChange = async (event) => {
     event.preventDefault();
     try {
       if (event.target.files[0]) {
@@ -36,7 +32,7 @@ function App() {
         setMainPhoto(photo);
         imageRef.current.onload = () => {
           // Initialize matrix
-          let mat = window.cv.imread(imageRef.current);
+          const mat = window.cv.imread(imageRef.current);
           // Display on canvas
           window.cv.imshow(canvasRef.current, mat);
           //Delete original matrix
@@ -50,68 +46,81 @@ function App() {
 
   return (
     <>
-      <HeaderAndNav func={handleNavItemClick} />
-      <Container>
-        <Card>
-          <div>
-            <label>
-              <input
-                style={{ display: "none" }}
-                accept="image/*"
-                type="file"
-                onChange={handlePhotoChange}
-              />
-              <IconButton aria-label="upload picture" component="span">
-                <PublishIcon />
+      <Router>
+        <HeaderAndNav />
+        <Container>
+          <Card>
+            <div>
+              <label>
+                <input
+                  style={{ display: "none" }}
+                  accept="image/*"
+                  type="file"
+                  onChange={handlePhotoChange}
+                />
+                <IconButton aria-label="upload picture" component="span">
+                  <PublishIcon />
+                </IconButton>
+              </label>
+              <IconButton
+                style={{ float: "right" }}
+                onClick={() => setMainPhoto("")}
+                aria-label="upload picture"
+                component="span"
+              >
+                <CancelIcon />
               </IconButton>
-            </label>
-            <IconButton
-              style={{ float: "right" }}
-              onClick={() => setMainPhoto("")}
-              aria-label="upload picture"
-              component="span"
-            >
-              <CancelIcon />
-            </IconButton>
-          </div>
-          <CardMedia>
-            <div style={{ display: "flex" }}>
-              <img
-                ref={imageRef}
-                className={styles.mainImg}
-                alt=""
-                onLoad={() => console.log("Uploaded")}
-                height="auto"
-                src={mainPhoto}
-              />
-              <canvas
-                ref={canvasRef}
-                id="canvasOutput"
-                className={styles.mainImg}
-                style={imgData}
-              ></canvas>
             </div>
-          </CardMedia>
-        </Card>
-      </Container>
-      {/* {component} */}
-      {mainPhoto ? (
-        <Brightness
-          image={imageRef}
-          canvas={canvasRef}
-          setImgData={setImgData}
-        ></Brightness>
-      ) : null}
-      {mainPhoto ? (
-        <div
-          className="sidebar"
-          style={{ display: "flex", justifyContent: "center", margin: "3rem" }}
-        >
-          <SobelFeature image={imageRef} canvas={canvasRef}></SobelFeature>
-          <Contrast image={imageRef} canvas={canvasRef}></Contrast>
-        </div>
-      ) : null}
-      <FaceDetection image={imageRef} canvas={canvasRef}></FaceDetection>
+            <CardMedia>
+              <div style={{ display: "flex" }}>
+                <img
+                  ref={imageRef}
+                  className={styles.mainImg}
+                  alt=""
+                  onLoad={() => console.log("Uploaded")}
+                  height="auto"
+                  src={mainPhoto}
+                />
+                <canvas
+                  ref={canvasRef}
+                  id="canvasOutput"
+                  className={styles.mainImg}
+                  style={imgData}
+                ></canvas>
+              </div>
+            </CardMedia>
+          </Card>
+        </Container>
+
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Brightness
+                image={imageRef}
+                canvas={canvasRef}
+                setImgData={setImgData}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/Contrast"
+            render={() => <Contrast image={imageRef} canvas={canvasRef} />}
+          />
+          <Route
+            exact
+            path="/Sobel"
+            render={() => <SobelFeature image={imageRef} canvas={canvasRef} />}
+          />
+          <Route
+            exact
+            path="/FaceDetection"
+            render={() => <FaceDetection image={imageRef} canvas={canvasRef} />}
+          />
+        </Switch>
+      </Router>
     </>
   );
 }
@@ -121,8 +130,8 @@ const useStyles = makeStyles(() => ({
     marginLeft: "auto",
     marginRight: "auto",
     paddingBottom: "15px",
-    maxWidth: "400px"
-  }
+    maxWidth: "400px",
+  },
 }));
 
 export default App;

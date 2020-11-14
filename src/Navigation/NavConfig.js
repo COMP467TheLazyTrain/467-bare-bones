@@ -1,23 +1,27 @@
-import HomeIcon from "@material-ui/icons/Home";
+import BrightnessMediumIcon from "@material-ui/icons/BrightnessMedium";
 import IsoIcon from "@material-ui/icons/Iso";
-import { Header } from "../Components/Header";
-import { ExampleFeature } from "../Components/example-feature/Feature";
-import { SobelFeature } from "../Components/sobel-feature/Feature";
+import FilterBAndWIcon from "@material-ui/icons/FilterBAndW";
+import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 
 export const NavItems = [
   {
-    title: "No sub features",
-    component: Header,
-    icon: HomeIcon,
+    title: "Brightness",
+    path: "/",
+    icon: BrightnessMediumIcon,
   },
   {
-    title: "Sub features",
-    component: ExampleFeature,
+    title: "Contrast",
+    path: "/Contrast",
     icon: IsoIcon,
   },
-  //{
-  //  title: "Sobel",
-  //  component: SobelFeature,
-  //  icon: IsoIcon,
-  //},
+  {
+    title: "Sobel",
+    path: "/Sobel",
+    icon: FilterBAndWIcon,
+  },
+  {
+    title: "Face Detection",
+    path: "/FaceDetection",
+    icon: InsertEmoticonIcon,
+  },
 ];
