@@ -3,13 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { PhotoProvider } from "./PhotoProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <PhotoProvider>
-      <App />
-    </PhotoProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

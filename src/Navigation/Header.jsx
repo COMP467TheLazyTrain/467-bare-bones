@@ -15,11 +15,11 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-// import { NavItems } from "./NavConfig";
+import { Link } from "react-router-dom";
 import { NavItems } from "./NavConfig";
 const drawerWidth = 240;
 
-export const HeaderAndNav = (props) => {
+export const HeaderAndNav = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -83,14 +83,19 @@ export const HeaderAndNav = (props) => {
         <Divider />
         <List>
           {NavItems.map((item, index) => (
-            <ListItem
-              button
+            <Link
+              to={item.path}
               key={index}
-              onClick={() => props.func(item.component)}
+              style={{ textDecorationLine: "none" }}
             >
-              <ListItemIcon>{<item.icon />}</ListItemIcon>
-              <ListItemText primary={item.title} />
-            </ListItem>
+              <ListItem button>
+                <ListItemIcon>{<item.icon />}</ListItemIcon>
+                <ListItemText
+                  primary={item.title}
+                  style={{ color: "#444444" }}
+                />
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
