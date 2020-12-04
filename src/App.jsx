@@ -14,15 +14,22 @@ import Contrast from "./Components/Contrast/Contrast.component";
 import FaceDetection from "./Components/faceDetection/FaceDetection.component";
 import { Threshold } from "./Components/Threshold";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import logo from './default.png';
 function App() {
   const styles = useStyles();
   //Setting up references to DOM elements
   const imageRef = useRef();
   const canvasRef = useRef();
-  const [mainPhoto, setMainPhoto] = useState(null);
+  const [mainPhoto, setMainPhoto] = useState(logo);
   const [imgData, setImgData] = useState(null);
-
+ 
+  window.onload = () => {
+    window.cv['onRuntimeInitialized']=()=>{
+  const mat = window.cv.imread(imageRef.current);
+  window.cv.imshow(canvasRef.current, mat);
+  mat.delete();
+    }
+}
   const handlePhotoChange = (event) => {
     event.preventDefault();
     console.log("handleCHangePhoto:::");
@@ -85,6 +92,7 @@ function App() {
                   onLoad={() => console.log("Uploaded")}
                   height="auto"
                   src={mainPhoto}
+                  id = "someRandomID"
                 />
                 <canvas
                   ref={canvasRef}
