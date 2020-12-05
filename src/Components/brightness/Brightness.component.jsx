@@ -1,10 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import IconButton from "@material-ui/core/IconButton";
 import BrightnessMediumIcon from "@material-ui/icons/BrightnessMedium";
-import Slider from "@material-ui/core/Slider";
 import Slider2 from "../slider2/Slider2";
-import "./Brightness.styles.css";
 import SidebarItem from "../sidebar/SideBarItem";
 
 const DEFAULT_OPTIONS = [
@@ -68,16 +66,16 @@ const Brightness = (props) => {
   // end
 
   //Destructuring imageRef and canvasRef from props
-  const { image, canvas } = props;
+  const {image} = props;
   const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleBrightnessChange = ({target}) => {
+    setValue(+target.value)
     //Initializing input matrix and output matrix
     let mat = window.cv.imread(image.current);
     let mat2 = new window.cv.Mat();
     // Applying openCV method to input matrix
-    window.cv.convertScaleAbs(mat, mat2, 1, newValue);
+    window.cv.convertScaleAbs(mat, mat2, 1, +target.value);
     // Displaying output matrix on canvas
     window.cv.imshow("canvasOutput", mat2);
   };
@@ -102,7 +100,7 @@ const Brightness = (props) => {
     });
 
     const temp = { filter: filters.join("") };
-    console.log(temp);
+   
     return props.setImgData(temp);
   }
 
@@ -125,10 +123,8 @@ const Brightness = (props) => {
         </div>
         <div style={{ width: "300px", padding: "0 1rem" }}>
           {selectedOptionIndex === 0 ? (
-            <Slider
-              track="inverted"
-              style={{ display: "flex" }}
-              onChange={handleChange}
+            <Slider2
+              handleChange={handleBrightnessChange}
               value={value}
               aria-labelledby="discrete-slider-restrict"
               step={1}
