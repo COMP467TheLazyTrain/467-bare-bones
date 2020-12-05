@@ -8,19 +8,19 @@ For the average user who needs basic image filtering, ReVamp is a web applicatio
 
 ## Team Members :sparkles:
 
-:ballot_box_with_check: **Product Manager: [Kyle Astudillo](https://github.com/KyleAstudillo)** 
+:ballot_box_with_check: **Product Manager: [Kyle Astudillo](https://github.com/KyleAstudillo)**
 
-:ballot_box_with_check: **Scrum Master: [Ana Reyes](https://github.com/ar978923)** 
+:ballot_box_with_check: **Scrum Master: [Ana Reyes](https://github.com/ar978923)**
 
-:ballot_box_with_check: **Developer: [Victor Pineda](https://github.com/PinedaVictor)** 
+:ballot_box_with_check: **Developer: [Victor Pineda](https://github.com/PinedaVictor)**
 
-:ballot_box_with_check: **Developer: [Shifath Salam](https://github.com/sheef-code)** 
+:ballot_box_with_check: **Developer: [Shifath Salam](https://github.com/sheef-code)**
 
-:ballot_box_with_check: **Developer: [Marcial Mendoza](https://github.com/Mozziemist)** 
+:ballot_box_with_check: **Developer: [Marcial Mendoza](https://github.com/Mozziemist)**
 
-:ballot_box_with_check: **Developer: [Johanna Guevara](https://github.com/jguev)** 
+:ballot_box_with_check: **Developer: [Johanna Guevara](https://github.com/jguev)**
 
-:ballot_box_with_check: **Developer: [Kathleen Lee](https://github.com/csunklee)** 
+:ballot_box_with_check: **Developer: [Kathleen Lee](https://github.com/csunklee)**
 
 ## Features
   * Sobel Filter -> Kyle Astudillo
@@ -65,6 +65,8 @@ Software included in the project are
   * https://opencv.org/
   * https://nodejs.org/en/
   * https://www.npmjs.com/
+## Try it out!
+**ReVamp: [Website](http://206.189.211.217:5000/)**
 ## Installation
 ```git config --global user.name "My Name"
 git config --global user.email "myemail@example.com"
@@ -76,6 +78,5 @@ nvm --version
 cd 467-bare-bones
 npm i
 ```
-
 ## Run
 ```npm run```
