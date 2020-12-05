@@ -1,6 +1,11 @@
 ![ReVamp_banner](https://user-images.githubusercontent.com/26126449/101236156-a615e300-3683-11eb-9f98-4516aa1ee90d.png)
 # What is ReVamp?
-For the average user who needs basic image filteringDma, the PLACEHOLDERAPPNAME is a web application that will provide a convenient interface to process images. The system will maintain and provide customers with basic image processing needs. This system will contain a collection of premade filters ready to apply to any image. Unlike the current, competition paid features will be free to use.
+
+## Mission:
+ReVamp keeps the user’s experience and wallet in mind. Our goal is to provide a high quality photo editing service and make it as accessible, affordable and flexible as we possibly can.
+
+For the average user who needs basic image filtering, ReVamp is a web application that will provide a convenient interface to process images. The system will maintain and provide customers with basic image processing needs. This system will contain a collection of premade filters ready to apply to any image. Unlike the current, competition paid features will be free to use.
+
 ## Team Members :sparkles:
 
 :ballot_box_with_check: **Product Manager: [Kyle Astudillo](https://github.com/KyleAstudillo)** 
@@ -18,15 +23,20 @@ For the average user who needs basic image filteringDma, the PLACEHOLDERAPPNAME 
 :ballot_box_with_check: **Developer: [Kathleen Lee](https://github.com/csunklee)** 
 
 ## Features
-  * Color Palette Generator - Johanna Guevara
-  * Takes in an image will extract a color pallet and apply the pallet to the html application
-  * Feature Algorithm 1 (Sobel Filter) Kyle Astudillo
-  * Take in an image, output an image with filter applied
-  * Face Detection and Blur (Haar Cascade) Marcial
-  * Brightness and Contrast - Shifa Salam
-  * Saturation & Greyscale - Ana Reyes
-  * Sepia & Hue Rotate - Kathleen Lee
-  * Feature Algorithm 7 - Victor
+  * Sobel Filter -> Kyle Astudillo
+    * Calculates the gradient of image intensity to filter image
+  * Face Detection and Blur (Haar Cascade)  -> Marcial Mendoza
+    * Uses a machine learning based approach to track human face
+  * Brightness/Contrast and Unit Testing -> Shifath Salam
+    * Calculates and adjusts the desired intensity of the image
+  * Saturation & Greyscale Filter -> Ana Reyes
+    * Controls and adjusts the hue of the image
+  * Sepia & Hue Rotate Filter -> Kathleen Lee
+    * Filters image with a warm brownish tone
+  * Inversion (Simple Thresholding) -> Johanna Guevara
+    * Applies simple thresholding techniques to filter image
+  * Edge Detection and UI Design -> Victor
+    * Applies Gaussian Blur to convert into binary image
   * Save Button
   * Clear Filter button
 ## Components
