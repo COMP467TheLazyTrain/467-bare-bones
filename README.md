@@ -1,13 +1,22 @@
+![ReVamp_banner](https://user-images.githubusercontent.com/26126449/101236156-a615e300-3683-11eb-9f98-4516aa1ee90d.png)
 # What is ReVamp?
 For the average user who needs basic image filteringDma, the PLACEHOLDERAPPNAME is a web application that will provide a convenient interface to process images. The system will maintain and provide customers with basic image processing needs. This system will contain a collection of premade filters ready to apply to any image. Unlike the current, competition paid features will be free to use.
-## Team Memebers
-  * Kyle Astudillo
-  * Ana Reyes
-  * Kathleen Lee
-  * Victor Pineda
-  * Shifa Salam
-  * Johanna 
-  * Marcial Mendoza
+## Team Members :sparkles:
+
+:ballot_box_with_check: **Product Manager: [Kyle Astudillo](https://github.com/KyleAstudillo)** 
+
+:ballot_box_with_check: **Scrum Master: [Ana Reyes](https://github.com/ar978923)** 
+
+:ballot_box_with_check: **Developer: [Victor Pineda](https://github.com/PinedaVictor)** 
+
+:ballot_box_with_check: **Developer: [Shifath Salam](https://github.com/sheef-code)** 
+
+:ballot_box_with_check: **Developer: [Marcial Mendoza](https://github.com/Mozziemist)** 
+
+:ballot_box_with_check: **Developer: [Johanna Guevara](https://github.com/jguev)** 
+
+:ballot_box_with_check: **Developer: [Kathleen Lee](https://github.com/csunklee)** 
+
 ## Features
   * Color Palette Generator - Johanna Guevara
   * Takes in an image will extract a color pallet and apply the pallet to the html application
