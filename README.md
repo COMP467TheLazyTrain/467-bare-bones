@@ -35,7 +35,7 @@ For the average user who needs basic image filtering, ReVamp is a web applicatio
     * Filters image with a warm brownish tone
   * Inversion (Simple Thresholding) -> Johanna Guevara
     * Applies simple thresholding techniques to filter image
-  * Edge Detection and UI Design -> Victor
+  * Edge Detection and UI Design -> Victor Pineda
     * Applies Gaussian Blur to convert into binary image
   * Save Button
   * Clear Filter button
