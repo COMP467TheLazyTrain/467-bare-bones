@@ -66,7 +66,7 @@ Software included in the project are
   * https://nodejs.org/en/
   * https://www.npmjs.com/
 ## Try it out!
-**ReVamp: [Website](http://206.189.211.217:5000/)**
+**ReVamp: [Website](https://206.189.211.217:5000/)**
 ## Installation
 ```git config --global user.name "My Name"
 git config --global user.email "myemail@example.com"
